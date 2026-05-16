@@ -1,7 +1,5 @@
 \# Vehicle Detection using YOLOv5 with CSV Export
 
-
-
 \## Overview
 
 This project performs real-time object detection on road scenes using YOLOv5.
@@ -9,8 +7,6 @@ This project performs real-time object detection on road scenes using YOLOv5.
 Detected objects such as vehicles, bikes, and persons are saved into a CSV file
 
 for further analysis.
-
-
 
 \## Features
 
@@ -22,11 +18,7 @@ for further analysis.
 
 \- Easy to analyze using Excel or Pandas
 
-
-
 \## How to Run
-
-
 
 \### Video Input
 
@@ -36,3 +28,4 @@ python detect.py --source data/traffic.mp4 --save-csv --view-img
 
 
 
+```

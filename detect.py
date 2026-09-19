@@ -3,7 +3,6 @@
 import argparse
 import csv
 import os
-import platform
 import sys
 from pathlib import Path
 
@@ -15,13 +14,12 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))
 
-from ultralytics.utils.plotting import Annotator, colors, save_one_box
+from ultralytics.utils.plotting import Annotator, colors
+
 from models.common import DetectMultiBackend
-from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
+from utils.dataloaders import LoadImages, LoadStreams
 from utils.general import (
     LOGGER,
-    Profile,
-    check_file,
     check_img_size,
     check_imshow,
     check_requirements,
@@ -31,7 +29,6 @@ from utils.general import (
     non_max_suppression,
     print_args,
     scale_boxes,
-    strip_optimizer,
 )
 from utils.torch_utils import select_device, smart_inference_mode
 
@@ -137,14 +134,16 @@ def run(
                 total = sum(counts.values())
                 with open(csv_path, "a", newline="") as f:
                     writer = csv.writer(f)
-                    writer.writerow([
-                        frame,
-                        counts["car"],
-                        counts["motorcycle"],
-                        counts["bus"],
-                        counts["truck"],
-                        total,
-                    ])
+                    writer.writerow(
+                        [
+                            frame,
+                            counts["car"],
+                            counts["motorcycle"],
+                            counts["bus"],
+                            counts["truck"],
+                            total,
+                        ]
+                    )
 
             im0 = annotator.result()
             if view_img:
@@ -169,8 +168,6 @@ def parse_opt():
     # DO NOT REMOVE THESE
     print_args(vars(opt))
     return opt
-
-
 
 
 def main(opt):
